@@ -16,7 +16,7 @@ int main()
     cout <<"Enter the search elements of the array:";
     cin >> s;
     for(int i=0;i<size;i++){
-        if(arr[size]==s){
+        if(arr[i]==s){
         temp++;
         break;
         }
