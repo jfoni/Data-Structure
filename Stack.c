@@ -4,7 +4,6 @@
 int stack[MAX];
 int top = -1;
 
-// ===========================
 // Push function
 void push() {
     int x;
@@ -20,7 +19,6 @@ void push() {
     }
 }
 
-// ===========================
 // Pop function
 void pop() {
     if (top == -1) {  // Check if stack is empty
@@ -31,7 +29,6 @@ void pop() {
     }
 }
 
-// ===========================
 // Peek function
 void peek() {
     if (top == -1) {  // Check if stack is empty
