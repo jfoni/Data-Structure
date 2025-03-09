@@ -1,0 +1,79 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+    struct node {
+        int data;
+        struct node *next;
+    };
+
+    struct node *head, *newnode, *temp, *prev;
+    head = 0;
+    int input, pos, i;
+
+    printf("If you want to create a linked list then type 1:\n");
+    scanf("%d", &input);
+
+    while (input)
+    {
+        // Type-casting
+        newnode = (struct node*)malloc(sizeof(struct node));
+
+        printf("Enter a data:\n");
+        scanf("%d", &newnode->data);
+        newnode->next = 0;
+
+        if (head == 0)  // If first node
+        {
+            head = temp = newnode;
+        }
+        else  // Insert at last
+        {
+            temp->next = newnode;
+            temp = newnode;
+        }
+
+        printf("Do you want to continue? (0/1):\n");
+        scanf("%d", &input);
+    }
+
+    printf("Enter position to insert a new node:\n");
+    scanf("%d", &pos);
+
+    newnode = (struct node*)malloc(sizeof(struct node));
+    printf("Enter data for new node:\n");
+    scanf("%d", &newnode->data);
+
+    if (pos == 1)  // Insert at the beginning
+    {
+        newnode->next = head;
+        head = newnode;
+    }
+    else
+    {
+        temp = head;
+        for (i = 1; i < pos - 1 && temp != 0; i++)
+        {
+            temp = temp->next;
+        }
+
+        if (temp == 0)
+        {
+            printf("Invalid position!\n");
+        }
+        else
+        {
+            newnode->next = temp->next;
+            temp->next = newnode;
+        }
+    }
+
+    temp = head;
+    while (temp != 0)
+    {
+        printf("%d -> ", temp->data);
+        temp = temp->next;
+    }
+    printf("NULL\n");
+}
+
