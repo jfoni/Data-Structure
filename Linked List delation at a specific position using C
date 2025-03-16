@@ -1,0 +1,72 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node {
+    int data;
+    struct node *next;
+};
+
+int main() {
+    struct node *head, *newnode, *temp, *prev;
+    head = 0;
+    int input, pos, i;
+
+    // Creating the linked list
+    printf("If you want to create a linked list then type 1:\n");
+    scanf("%d", &input);
+
+    while (input) {
+        newnode = (struct node*)malloc(sizeof(struct node));
+
+        printf("Enter data:\n");
+        scanf("%d", &newnode->data);
+        newnode->next = 0;
+
+        if (head == 0) {  // If first node
+            head = temp = newnode;
+        } else {  // Insert at last
+            temp->next = newnode;
+            temp = newnode;
+        }
+
+        printf("Do you want to continue? (0/1):\n");
+        scanf("%d", &input);
+    }
+
+    // Deleting a node at a specific position
+    printf("Enter position to delete:\n");
+    scanf("%d", &pos);
+
+    if (head == NULL) {
+        printf("List is empty!\n");
+    }
+    else if (pos == 1) {  // Deleting the first node
+        temp = head;
+        head = head->next;
+        free(temp);
+    }
+    else {
+        temp = head;
+        for (i = 1; i < pos - 1 && temp->next != NULL; i++) {
+            temp = temp->next;
+        }
+
+        if (temp->next == NULL) {
+            printf("Invalid position!\n");
+        }
+        else {
+            struct node *delNode = temp->next;
+            temp->next = delNode->next;
+            free(delNode);
+        }
+    }
+
+    // Display the list after deletion
+    temp = head;
+    printf("Updated Linked List: ");
+    while (temp != NULL) {
+        printf("%d -> ", temp->data);
+        temp = temp->next;
+    }
+    printf("NULL\n");
+}
