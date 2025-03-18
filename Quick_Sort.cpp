@@ -22,6 +22,9 @@ void quickSort(int arr[], int low, int high) {
 
     swap(arr[low], arr[end]);
 
+    quickSort(arr, low, end - 1);
+    quickSort(arr, end + 1, high);
+
 }
 
 int main() {
